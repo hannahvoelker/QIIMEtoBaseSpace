@@ -41,13 +41,28 @@ def readInput(filename):
 		Counts = []
 		for line in filer:
 			currentLine = line.strip().split(',')
-			listofGenus.append(currentLine[0].split(';')[-1])
+			currbacterium = currentLine[0].split(';')
+			currGenus = getGenus(currbacterium)
+			listofGenus.append(currGenus)
 			Counts.append(currentLine[1:]*100)
-
 	return (cleanList, listofGenus, Counts)
+
+def getGenus(bacteria):
+	for counter in range(len(bacteria)-1, 0, -1):
+		if bacteria[counter] != 'g__' and counter == len(bacteria)-1:
+			return bacteria[counter].split('g__')[-1]
+		elif bacteria[counter] != 'f__' and counter == len(bacteria) - 2:
+			return bacteria[counter].split('f__')[-1]
+		elif bacteria[counter] != 'o__' and counter == len(bacteria) - 3:
+			return bacteria[counter].split('o__')[-1]
+		elif bacteria[counter] != 'c__' and counter == len(bacteria) - 4:
+			return bacteria[counter].split('c__')[-1]
+		elif bacteria[counter] != 'p__' and counter == len(bacteria) - 5:
+			return bacteria[counter].split('p__')[-1]
 
 def makeCSV(samples, genus, counts):
 	outputFile = open('MicrobiomeCounts.csv', 'w')
+	print genus
 	filewriter = csv.writer(outputFile)
 	filewriter.writerow(samples)
 	for i in range(len(genus)):
