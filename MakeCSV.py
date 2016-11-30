@@ -30,19 +30,22 @@ def main():
 def readInput(filename):
 	# read in sample name strings, genus name strings, and counts
 	with open(filename, 'r') as filer:
+		filer.readline()
 		ListofSamples = filer.readline().strip().split(',')[1:]
+		cleanList = []
 		for sample in ListofSamples:
-			sample = sample.split(';')[-1]
+			sample = sample.split('fastqjoin.join.fastq')
+			cleanList.append(sample[0])
 		listofGenus = []
 		Counts = []
 		for line in filer:
 			currentLine = line.strip().split(',')
-			listofGenus.append(currentLine[0])
-			Counts.append(currentLine[1:])
+			listofGenus.append(currentLine[0].split(';')[-1])
+			Counts.append(currentLine[1:]*100)
 
-	return (ListofSamples, listofGenus, Counts)
+	return (cleanList, listofGenus, Counts)
 def makeCSV(samples, genus, counts):
-	print samples
+	print genus
 	return
 
 if __name__ == '__main__' :
