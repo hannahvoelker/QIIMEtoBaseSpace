@@ -33,6 +33,7 @@ def readInput(filename):
 		filer.readline()
 		ListofSamples = filer.readline().strip().split(',')[1:]
 		cleanList = []
+		cleanList.append(' ')
 		for sample in ListofSamples:
 			sample = sample.split('fastqjoin.join.fastq')
 			cleanList.append(sample[0])
@@ -44,8 +45,18 @@ def readInput(filename):
 			Counts.append(currentLine[1:]*100)
 
 	return (cleanList, listofGenus, Counts)
+
 def makeCSV(samples, genus, counts):
-	print genus
+	outputFile = open('MicrobiomeCounts.csv', 'w')
+	filewriter = csv.writer(outputFile)
+	filewriter.writerow(samples)
+	for i in range(len(genus)):
+		rowvector = []
+		rowvector.append(genus[i])
+		rowcounts = counts[i]
+		for elem in rowcounts:
+			rowvector.append(elem)
+		filewriter.writerow(rowvector)
 	return
 
 if __name__ == '__main__' :
