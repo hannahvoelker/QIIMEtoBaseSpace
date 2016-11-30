@@ -5,7 +5,9 @@ This program was written for the BioSeq[http://ase.tufts.edu/chemistry/walt/sepa
 
 ## The inputs
 ** The file input must be a CSV! ** 
+
 A QIIME file looks like this:
+|------|	------ |	------ | ------ | ------- | ------- | --------|	------- |
 |#	Constructed	from	biom	file|			
 |#OTUID|	EGMFfastqjoin.join.fastq |	EGMSfastqjoin.join.fastq | EGTCfastqjoin.join.fastq	| EGTFfastqjoin.join.fastq	| EGTSfastqjoin.join.fastq	| JRHWfastqjoin.join.fastq |	JRMRfastqjoin.join.fastq|
 k__Bacteria;p__Cyanobacteria;c__Chloroplast;o__Stramenopiles;f__;g__|	0.238064797 |	0.069306309 |0 |	0.00149888 |	0.007999273 |	0.011911713 |	0.004956067 |
