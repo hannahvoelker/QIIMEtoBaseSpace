@@ -1,13 +1,11 @@
-
 #!usr/bin/env python
 
 # MakeCSVfile.py
-#Author: Hannah Voelker
-#Made: 10/14/16
+# Author: Hannah Voelker
+# Made: 10/14/16
 
 import subprocess as sp 
 import csv
-import xlrd
 
 # current data set: 
 # each row is a bacteria, in the format 
@@ -44,7 +42,7 @@ def readInput(filename):
 			currbacterium = currentLine[0].split(';')
 			currGenus = getGenus(currbacterium)
 			listofGenus.append(currGenus)
-			Counts.append(currentLine[1:]*100)
+			Counts.append(currentLine[1:])
 	return (cleanList, listofGenus, Counts)
 
 def getGenus(bacteria):
@@ -70,6 +68,7 @@ def makeCSV(samples, genus, counts):
 		rowvector.append(genus[i])
 		rowcounts = counts[i]
 		for elem in rowcounts:
+			elem = float(elem)*100
 			rowvector.append(elem)
 		filewriter.writerow(rowvector)
 	return
