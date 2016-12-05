@@ -6,6 +6,7 @@
 
 import subprocess as sp 
 import csv
+import re
 
 # current data set: 
 # each row is a bacteria, in the format 
@@ -48,15 +49,20 @@ def readInput(filename):
 def getGenus(bacteria):
 	for counter in range(len(bacteria)-1, 0, -1):
 		if bacteria[counter] != 'g__' and counter == len(bacteria)-1:
-			return bacteria[counter].split('g__')[-1]
+			name = bacteria[counter].split('g__')[-1]
+			return re.sub(r'[^\w]', '', name)
 		elif bacteria[counter] != 'f__' and counter == len(bacteria) - 2:
-			return bacteria[counter].split('f__')[-1]
+			name =  bacteria[counter].split('f__')[-1]
+			return re.sub(r'[^\w]', '', name)
 		elif bacteria[counter] != 'o__' and counter == len(bacteria) - 3:
-			return bacteria[counter].split('o__')[-1]
+			name = bacteria[counter].split('o__')[-1]
+			return re.sub(r'[^\w]', '', name)
 		elif bacteria[counter] != 'c__' and counter == len(bacteria) - 4:
-			return bacteria[counter].split('c__')[-1]
+			name = bacteria[counter].split('c__')[-1]
+			return re.sub(r'[^\w]', '', name)
 		elif bacteria[counter] != 'p__' and counter == len(bacteria) - 5:
-			return bacteria[counter].split('p__')[-1]
+			name = bacteria[counter].split('p__')[-1]
+			return re.sub(r'[^\w]', '', name)
 
 def makeCSV(samples, genus, counts):
 	outputFile = open('MicrobiomeCounts.csv', 'w')
